@@ -1,0 +1,113 @@
+/* ================= TABLA LIBROS ================= */
+
+.tabla-libros {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabla-libros table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-libros th {
+    background: #8b5e3c;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.tabla-libros td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.tabla-libros tr:hover {
+    background: #f9f6f2;
+}
+
+.tabla-libros img {
+    width: 55px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ================= ESTADO ================= */
+
+.estado-digital {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.estado-fisico {
+    color: #a7744f;
+    font-weight: bold;
+}
+
+/* ================= BOTONES ================= */
+
+.btn-editar,
+.btn-eliminar {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    color: white;
+    display: inline-block;
+    margin-right: 5px;
+    transition: 0.3s;
+}
+
+.btn-editar {
+    background: #3498db;
+}
+
+.btn-editar:hover {
+    background: #2980b9;
+}
+
+.btn-eliminar {
+    background: #e74c3c;
+}
+
+.btn-eliminar:hover {
+    background: #c0392b;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .tabla-libros table,
+    .tabla-libros thead,
+    .tabla-libros tbody,
+    .tabla-libros th,
+    .tabla-libros td,
+    .tabla-libros tr {
+        display: block;
+    }
+
+    .tabla-libros tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background: white;
+    }
+
+    .tabla-libros td {
+        border: none;
+        padding: 8px 0;
+    }
+
+    .tabla-libros th {
+        display: none;
+    }
+}

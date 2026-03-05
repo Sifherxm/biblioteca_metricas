@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url("img/unnamed.jpg") no-repeat center center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Tarjeta principal */
+.card {
+    width: 380px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+}
+
+/* Logo */
+.logo {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 130px;
+    margin-bottom: 10px;
+}
+
+/* Títulos */
+h1 {
+    font-size: 20px;
+    color: #6b3f26;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #5a3a23;
+    margin-bottom: 25px;
+}
+
+/* Botones */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+.btn {
+    padding: 13px;
+    border-radius: 25px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;   
+    text-align: center;
+}
+
+/* Estudiante */
+.student {
+    background-color: #cbb49a;
+    color: #4a2d1a;
+}
+
+.student:hover {
+    background-color: #b59d82;
+}
+
+/* Administrador */
+.admin {
+    background-color: #6b3f26;
+    color: #fff;
+}
+
+.admin:hover {
+    background-color: #56301c;
+}
+
+/* Texto inferior */
+.info {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #6b6b6b;
+}
+
+.date {
+    margin-top: 15px;
+    font-size: 11px;
+    color: #777;
+}

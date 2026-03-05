@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Biblioteca Escolar</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <div class="login-card">
+      <div class="logo">
+        <img src="img/logo_biblioteca.png" alt="Libro" />
+      </div>
+
+      <h1>BIBLIOTECA ESCOLAR</h1>
+      <p class="subtitle">Inicio de Sesión</p>
+
+      <!-- MENSAJE DE ERROR -->
+      <p id="mensajeError"></p>
+
+      <form
+        action="bd/loginal.php"
+        method="POST"
+        onsubmit="return validarFormulario();"
+      >
+        <div class="input-group">
+          <input
+            type="text"
+            name="matricula"
+            id="matricula"
+            placeholder="Matrícula"
+            maxlength="10"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Contraseña"
+            minlength="8"
+            required
+          />
+        </div>
+
+        <button type="submit">INICIAR SESIÓN</button>
+      </form>
+
+      <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+      <a href="index.html" class="forgot">¿No tienes cuenta? Registrarte</a>
+    </div>
+
+    <script>
+      const inputMatricula = document.getElementById("matricula");
+      const mensaje = document.getElementById("mensajeError");
+
+      // 🔹 Solo números en matrícula
+      inputMatricula.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+      });
+
+      function validarFormulario() {
+        const matricula = inputMatricula.value;
+        const password = document.getElementById("password").value;
+
+        if (matricula.length !== 10) {
+          alert("La matrícula debe tener exactamente 10 números.");
+          return false;
+        }
+
+        if (password.length < 8) {
+          alert("La contraseña debe tener mínimo 8 caracteres.");
+          return false;
+        }
+
+        // 🔹 Validar números consecutivos en contraseña
+        if (tieneConsecutivos(password)) {
+          alert(
+            "La contraseña no debe contener números consecutivos como 123 o 456.",
+          );
+          return false;
+        }
+
+        return true;
+      }
+
+      // 🔹 Función para detectar consecutivos
+      function tieneConsecutivos(password) {
+        for (let i = 0; i < password.length - 2; i++) {
+          let a = parseInt(password[i]);
+          let b = parseInt(password[i + 1]);
+          let c = parseInt(password[i + 2]);
+
+          if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+            // Ascendentes 123
+            if (b === a + 1 && c === b + 1) {
+              return true;
+            }
+
+            // Descendentes 321
+            if (b === a - 1 && c === b - 1) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+
+      // 🔹 Mostrar mensaje si viene error desde PHP
+      const params = new URLSearchParams(window.location.search);
+      const error = params.get("error");
+
+      if (error === "user") {
+        mensaje.textContent = "Esa matrícula no existe.";
+      }
+
+      if (error === "pass") {
+        mensaje.textContent = "Contraseña incorrecta.";
+      }
+    </script>
+  </body>
+</html>

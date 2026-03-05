@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registro Administrador | Biblioteca Escolar</title>
+    <link rel="stylesheet" href="registroal.css" />
+  </head>
+  <body>
+    <div class="login-card">
+      <div class="logo">
+        <img src="img/logo_biblioteca.png" alt="Libro" />
+      </div>
+
+      <h1>BIBLIOTECA ESCOLAR</h1>
+      <p class="subtitle">REGISTRO DE ADMINISTRADOR</p>
+      <p id="mensajeError"></p>
+
+      <form
+        action="bd/registroadm.php"
+        method="POST"
+        onsubmit="return validarFormulario();"
+      >
+        <div class="grid">
+          <div class="input-group">
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              maxlength="20"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              name="apellido_paterno"
+              placeholder="Apellido paterno"
+              maxlength="20"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              name="apellido_materno"
+              placeholder="Apellido materno"
+              maxlength="20"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              name="matricula"
+              id="matricula"
+              placeholder="Matrícula"
+              maxlength="10"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="email"
+            name="correo"
+            placeholder="Correo electrónico"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            maxlength="12"
+            minlength="8"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            placeholder="Confirmar contraseña"
+            maxlength="12"
+            minlength="8"
+            required
+          />
+        </div>
+
+        <button type="submit">REGISTRAR ADMINISTRADOR</button>
+      </form>
+
+      <a href="login.html" class="forgot">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+
+    <script>
+      const mensaje = document.getElementById("mensajeError");
+      const inputMatricula = document.getElementById("matricula");
+
+      // 🔹 Solo números en matrícula
+      inputMatricula.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+      });
+
+      function validarFormulario() {
+        const matricula = inputMatricula.value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirm_password").value;
+
+        if (matricula.length !== 10) {
+          alert("La matrícula debe tener exactamente 10 números.");
+          return false;
+        }
+
+        if (password.length < 8) {
+          alert("La contraseña debe tener mínimo 8 caracteres.");
+          return false;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Las contraseñas no coinciden.");
+          return false;
+        }
+
+        if (tieneConsecutivos(password)) {
+          alert(
+            "La contraseña no debe contener números consecutivos como 123 o 321.",
+          );
+          return false;
+        }
+
+        if (tieneRepetidos(password)) {
+          alert(
+            "La contraseña no puede contener el mismo número repetido como 11111111.",
+          );
+          return false;
+        }
+
+        return true;
+      }
+
+      function tieneRepetidos(password) {
+        if (password.length === 0) return false;
+
+        let primerCaracter = password[0];
+
+        for (let i = 1; i < password.length; i++) {
+          if (password[i] !== primerCaracter) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      function tieneConsecutivos(password) {
+        for (let i = 0; i < password.length - 2; i++) {
+          let a = parseInt(password[i]);
+          let b = parseInt(password[i + 1]);
+          let c = parseInt(password[i + 2]);
+
+          if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+            if (b === a + 1 && c === b + 1) return true;
+            if (b === a - 1 && c === b - 1) return true;
+          }
+        }
+        return false;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const error = params.get("error");
+
+      if (error === "matricula") {
+        mensaje.textContent = "La matrícula ya está registrada.";
+      }
+
+      if (error === "correo") {
+        mensaje.textContent = "El correo ya está registrado.";
+      }
+    </script>
+  </body>
+</html>

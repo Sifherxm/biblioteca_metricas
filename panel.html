@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Agregar Libro</title>
+  </head>
+  <body>
+    <h2>Agregar Nuevo Libro</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      <input
+        type="text"
+        name="titulo"
+        placeholder="Título"
+        required
+      /><br /><br />
+
+      <input type="text" name="autor" placeholder="Autor" /><br /><br />
+
+      <textarea name="descripcion" placeholder="Descripción"></textarea
+      ><br /><br />
+
+      <input type="text" name="editorial" placeholder="Editorial" /><br /><br />
+
+      <input type="number" name="anio" placeholder="Año" /><br /><br />
+
+      <select name="tipo" required>
+        <option value="digital">Digital</option>
+        <option value="fisico">Físico</option></select
+      ><br /><br />
+
+      <select name="categoria" required>
+        <option value="">Seleccionar Categoría</option>
+        <?php while($cat = $categorias->fetch_assoc()){ ?>
+        <option value="<?php echo $cat['id_categoria']; ?>">
+          <?php echo $cat['nombre']; ?>
+        </option>
+        <?php } ?></select
+      ><br /><br />
+
+      Imagen: <input type="file" name="imagen" required /><br /><br />
+
+      Archivo PDF (si es digital):
+      <input type="file" name="archivo" /><br /><br />
+
+      <button type="submit" name="guardar">Guardar Libro</button>
+    </form>
+  </body>
+</html>

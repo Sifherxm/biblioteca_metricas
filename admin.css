@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, serif;
+}
+
+body {
+    background: #e6e1dc;
+}
+
+/* ================= LAYOUT ================= */
+
+.container {
+    display: flex;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    background: #8b5e3c;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.logo img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar button {
+    background: #c8956d;
+    border: none;
+    padding: 12px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar button:hover {
+    background: #a7744f;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    margin-left: 220px;
+    padding: 30px;
+    width: 100%;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user-icons {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.user-icons img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.user-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* ================= USER MENU ================= */
+
+.user-menu {
+    position: relative;
+}
+
+.user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-trigger img {
+    width: 42px;
+    height: 42px;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 55px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    display: none;
+    min-width: 140px;
+}
+
+.dropdown.show {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown a:hover {
+    background: #f2f2f2;
+}
+
+/* ================= FORMULARIO ADMIN ================= */
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.form-admin {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 500px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-admin h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-admin input,
+.form-admin select,
+.form-admin textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form-admin textarea {
+    resize: none;
+    height: 90px;
+}
+
+.form-admin input:focus,
+.form-admin select:focus,
+.form-admin textarea:focus {
+    outline: none;
+    border: 1px solid #8b5e3c;
+    box-shadow: 0 0 5px rgba(139,94,60,0.4);
+}
+
+.form-admin label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.form-admin button {
+    background: #8b5e3c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.form-admin button:hover {
+    background: #a7744f;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+    display: block;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card img {
+    width: 180px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .form-admin {
+        width: 90%;
+    }
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .main {
+        margin-left: 180px;
+    }
+}
